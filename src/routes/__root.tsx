@@ -77,11 +77,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Chungi Yoo — Art Director & Illustrator" },
+      {
+        name: "description",
+        content:
+          "Portfolio of Chungi Yoo, a Germany based art director and illustrator creating bold branding and colourful editorial illustration.",
+      },
+      { name: "author", content: "Chungi Yoo" },
+      { property: "og:title", content: "Chungi Yoo — Art Director & Illustrator" },
+      {
+        property: "og:description",
+        content:
+          "Portfolio of Chungi Yoo, a Germany based art director and illustrator creating bold branding and colourful editorial illustration.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
@@ -92,6 +100,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Jost:wght@300;400;500&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
