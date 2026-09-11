@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site/site-nav";
 import { Marquee } from "@/components/site/marquee";
 import { WorkCard, type Work } from "@/components/site/work-card";
+import { RotatingBadge, ArrowDown, ArrowSide } from "@/components/site/rotating-badge";
 import { useReveal, useScrollY } from "@/hooks/use-reveal";
 
 import portrait from "@/assets/portrait.jpg";
@@ -11,6 +12,7 @@ import workBangs from "@/assets/work-bangs.jpg";
 import workKorea from "@/assets/work-korea.jpg";
 import workCube from "@/assets/work-cube.jpg";
 import workBranding from "@/assets/work-branding.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
