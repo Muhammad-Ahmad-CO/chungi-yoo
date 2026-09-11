@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site/site-nav";
 import { Marquee } from "@/components/site/marquee";
 import { WorkCard, type Work } from "@/components/site/work-card";
+import { RotatingBadge, ArrowDown, ArrowSide } from "@/components/site/rotating-badge";
 import { useReveal, useScrollY } from "@/hooks/use-reveal";
 
 import portrait from "@/assets/portrait.jpg";
@@ -11,6 +12,7 @@ import workBangs from "@/assets/work-bangs.jpg";
 import workKorea from "@/assets/work-korea.jpg";
 import workCube from "@/assets/work-cube.jpg";
 import workBranding from "@/assets/work-branding.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,72 +38,110 @@ export const Route = createFileRoute("/")({
 
 const WORKS: Work[] = [
   {
-    index: "1 / 5",
+    index: "15",
     title: "Illustrations",
     description: "Commercial and personal stories told through the art. Colour first, always.",
     image: workIllustrations,
-    bg: "oklch(0.915 0.11 95)",
-    tilt: -6,
+    image2: workBranding,
+    arch: "oklch(0.915 0.11 95)",
+    bg: "oklch(0.955 0.014 85)",
   },
   {
-    index: "2 / 5",
+    index: "25",
     title: "Bangs",
     description:
       "Who needs a haircut? Bangs is a (hypothetical) hairdresser salon which stands out with its bright colours and fun characters.",
     image: workBangs,
-    bg: "oklch(0.955 0.014 85)",
-    tilt: 5,
+    image2: workIllustrations,
+    arch: "oklch(0.915 0.11 95)",
+    bg: "oklch(0.985 0.008 85)",
   },
   {
-    index: "3 / 5",
+    index: "35",
     title: "Liberty in North Korea",
     description:
       "The disproportional attention of today's media is paid to the never ending debate between world leaders — this series looks the other way.",
     image: workKorea,
-    bg: "oklch(0.91 0.02 80)",
-    tilt: -4,
+    image2: workCube,
+    arch: "oklch(0.93 0.012 85)",
+    bg: "oklch(0.955 0.014 85)",
   },
   {
-    index: "4 / 5",
+    index: "45",
     title: "Cube",
     description:
       "Walking to work, dancing in the club, riding your bike: we are constantly moving and producing energy. What if we could use it?",
     image: workCube,
-    bg: "oklch(0.855 0.062 15)",
-    tilt: 6,
+    image2: workKorea,
+    arch: "oklch(0.855 0.062 15)",
+    bg: "oklch(0.955 0.014 85)",
   },
   {
-    index: "5 / 5",
+    index: "55",
     title: "Chungi Yoo",
     description:
       "Branding for yourself is by far the most difficult thing to do. You tend to critique and procrastinate endlessly.",
     image: workBranding,
+    image2: workBangs,
+    arch: "oklch(0.93 0.012 85)",
     bg: "oklch(0.955 0.014 85)",
-    tilt: -5,
   },
 ];
 
 function Hero() {
   const y = useScrollY();
   return (
-    <section id="top" className="relative flex min-h-screen flex-col justify-center overflow-hidden px-5 md:px-16">
+    <section id="top" className="relative overflow-hidden px-5 pt-36 pb-16 md:px-12 md:pt-44 md:pb-24">
+      {/* soft shapes */}
       <div
-        className="pointer-events-none absolute -right-24 top-1/4 h-[36rem] w-[36rem] rounded-full bg-sun/60 blur-[10px]"
-        style={{ transform: `translateY(${y * -0.15}px)` }}
+        className="pointer-events-none absolute left-2 top-[30%] h-32 w-32 rotate-45 bg-blush/70 md:h-56 md:w-56"
+        style={{ transform: `translateY(${y * -0.12}px) rotate(45deg)` }}
       />
-      <div className="relative mx-auto w-full max-w-6xl pt-28 text-center">
-        <p className="eyebrow text-ink/60">Welcome to the playground of</p>
-        <h1 className="mt-6 text-[19vw] leading-[0.78] md:text-[13vw]">
-          <span className="block italic">chungi</span>
-          <span className="block">yoo</span>
+      <div
+        className="pointer-events-none absolute -right-20 top-[18%] h-64 w-64 rounded-full bg-sun/45 blur-[2px] md:h-[26rem] md:w-[26rem]"
+        style={{ transform: `translateY(${y * -0.18}px)` }}
+      />
+
+      <div className="relative mx-auto max-w-6xl">
+        <h1 className="text-center text-[15vw] leading-[0.82] md:text-[10.5vw]">
+          <span className="block">Welcome to the</span>
+          <span className="block">playground</span>
+          <span className="block">
+            <span className="italic">of</span> chungi
+          </span>
+          <span className="block italic">yoo</span>
         </h1>
-        <p className="display mt-8 text-2xl italic md:text-4xl">Art Director &amp; Illustrator</p>
-        <p className="mx-auto mt-8 max-w-md text-base leading-relaxed text-ink/70">
-          Hi! I&rsquo;m Chung-Yun Yoo, art director and illustrator from Germany. But you can call me Chungi.
+
+        <div className="relative mt-12 flex items-center justify-center gap-6 md:mt-16 md:gap-16">
+          <p className="max-w-[19rem] rounded-[50%] border border-ink/40 bg-cream px-10 py-9 text-center text-[0.8rem] leading-relaxed text-ink/80">
+            Hi! I&rsquo;m Chung-Yun Yoo, Art director and Illustrator from Germany. But you can call me Chungi.
+          </p>
+          <RotatingBadge className="hidden md:block" />
+        </div>
+      </div>
+    </section>
+
+  );
+}
+
+function Intro() {
+  const reveal = useReveal<HTMLElement>();
+  return (
+    <section ref={reveal.ref} className={`${reveal.className} relative overflow-hidden px-5 py-28 md:py-40`}>
+      <span
+        aria-hidden="true"
+        className="display pointer-events-none absolute inset-x-0 top-4 text-center text-[30vw] leading-none text-blush/70"
+      >
+        Art
+      </span>
+      <div className="relative mx-auto max-w-4xl text-center">
+        <p className="display text-3xl md:text-6xl">
+          Director <span className="italic">&amp;</span> Illustrator
         </p>
+        <ArrowDown className="mx-auto mt-10 h-24 w-14 text-rouge" />
         <a
-          href="#about"
-          className="mt-12 inline-block border-b border-ink pb-1 eyebrow transition-opacity hover:opacity-60"
+          href="#works"
+          className="mt-10 inline-block rounded-full border border-ink/40 px-8 py-3 eyebrow transition-colors hover:bg-ink hover:text-cream"
         >
           Let&rsquo;s make your own story
         </a>
@@ -109,6 +149,7 @@ function Hero() {
     </section>
   );
 }
+
 
 function About() {
   const reveal = useReveal<HTMLElement>();
@@ -125,8 +166,10 @@ function About() {
           loading="lazy"
           width={1000}
           height={1000}
-          className="w-64 shrink-0 rounded-full object-cover md:w-96"
+          className="w-60 shrink-0 rounded-[50%] object-cover md:w-80"
+          style={{ aspectRatio: "3 / 4" }}
         />
+
         <div>
           <p className="eyebrow text-ink/50">About</p>
           <h2 className="mt-5 text-4xl md:text-6xl">
@@ -163,20 +206,25 @@ function Contact() {
       ref={reveal.ref}
       className={`${reveal.className} relative overflow-hidden bg-sun px-5 py-32 md:px-16 md:py-44`}
     >
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-12 text-center">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-10 text-center">
         <p className="eyebrow text-ink/60">Say a simple hello</p>
-        <h2 className="max-w-4xl text-5xl md:text-8xl">
-          Let&rsquo;s collaborate &amp; <span className="italic">tell your story.</span>
+        <h2 className="max-w-5xl text-5xl leading-[0.95] md:text-[6.5rem]">
+          Let&rsquo;s collaborate <span className="italic">&amp;</span> tell your story.
         </h2>
-        <a
-          href="mailto:hello@chungiyoo.com"
-          className="flex h-40 w-40 items-center justify-center rounded-full bg-cream text-center eyebrow transition-transform duration-500 hover:scale-110 md:h-48 md:w-48"
-        >
-          Contact
-          <br />
-          me
-        </a>
+        <div className="flex items-center gap-4 md:gap-10">
+          <ArrowSide className="h-8 w-20 text-ink/70 md:w-28" />
+          <a
+            href="mailto:hello@chungiyoo.com"
+            className="flex h-36 w-36 items-center justify-center rounded-full bg-cream text-center eyebrow transition-transform duration-500 hover:scale-110 md:h-48 md:w-48"
+          >
+            Contact
+            <br />
+            me
+          </a>
+          <ArrowSide flip className="h-8 w-20 text-ink/70 md:w-28" />
+        </div>
       </div>
+
     </section>
   );
 }
@@ -215,21 +263,23 @@ function Home() {
     <main className="bg-cream text-ink">
       <SiteNav />
       <Hero />
+      <Intro />
       <About />
       <Marquee text="Let's make your own story" className="bg-cream" />
       <Quote />
-      <section id="works" className="px-5 pb-8 text-center md:px-16">
-        <h2 className="text-5xl md:text-8xl">
+      <section id="works" className="px-5 pb-4 text-center md:px-16">
+        <h2 className="text-6xl leading-[0.9] md:text-[8rem]">
           Some of my <span className="italic">selected works</span>
         </h2>
       </section>
       <div id="illustrations">
-        {WORKS.map((work, i) => (
-          <WorkCard key={work.title} work={work} flip={i % 2 === 1} />
+        {WORKS.map((work) => (
+          <WorkCard key={work.title} work={work} />
         ))}
       </div>
       <Contact />
       <Footer />
     </main>
+
   );
 }
