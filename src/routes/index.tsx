@@ -167,8 +167,10 @@ function About() {
           loading="lazy"
           width={1000}
           height={1000}
-          className="w-64 shrink-0 rounded-full object-cover md:w-96"
+          className="w-60 shrink-0 rounded-[50%] object-cover md:w-80"
+          style={{ aspectRatio: "3 / 4" }}
         />
+
         <div>
           <p className="eyebrow text-ink/50">About</p>
           <h2 className="mt-5 text-4xl md:text-6xl">
@@ -205,20 +207,25 @@ function Contact() {
       ref={reveal.ref}
       className={`${reveal.className} relative overflow-hidden bg-sun px-5 py-32 md:px-16 md:py-44`}
     >
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-12 text-center">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-10 text-center">
         <p className="eyebrow text-ink/60">Say a simple hello</p>
-        <h2 className="max-w-4xl text-5xl md:text-8xl">
-          Let&rsquo;s collaborate &amp; <span className="italic">tell your story.</span>
+        <h2 className="max-w-5xl text-5xl leading-[0.95] md:text-[6.5rem]">
+          Let&rsquo;s collaborate <span className="italic">&amp;</span> tell your story.
         </h2>
-        <a
-          href="mailto:hello@chungiyoo.com"
-          className="flex h-40 w-40 items-center justify-center rounded-full bg-cream text-center eyebrow transition-transform duration-500 hover:scale-110 md:h-48 md:w-48"
-        >
-          Contact
-          <br />
-          me
-        </a>
+        <div className="flex items-center gap-4 md:gap-10">
+          <ArrowSide className="h-8 w-20 text-ink/70 md:w-28" />
+          <a
+            href="mailto:hello@chungiyoo.com"
+            className="flex h-36 w-36 items-center justify-center rounded-full bg-cream text-center eyebrow transition-transform duration-500 hover:scale-110 md:h-48 md:w-48"
+          >
+            Contact
+            <br />
+            me
+          </a>
+          <ArrowSide flip className="h-8 w-20 text-ink/70 md:w-28" />
+        </div>
       </div>
+
     </section>
   );
 }
@@ -257,21 +264,23 @@ function Home() {
     <main className="bg-cream text-ink">
       <SiteNav />
       <Hero />
+      <Intro />
       <About />
       <Marquee text="Let's make your own story" className="bg-cream" />
       <Quote />
-      <section id="works" className="px-5 pb-8 text-center md:px-16">
-        <h2 className="text-5xl md:text-8xl">
+      <section id="works" className="px-5 pb-4 text-center md:px-16">
+        <h2 className="text-6xl leading-[0.9] md:text-[8rem]">
           Some of my <span className="italic">selected works</span>
         </h2>
       </section>
       <div id="illustrations">
-        {WORKS.map((work, i) => (
-          <WorkCard key={work.title} work={work} flip={i % 2 === 1} />
+        {WORKS.map((work) => (
+          <WorkCard key={work.title} work={work} />
         ))}
       </div>
       <Contact />
       <Footer />
     </main>
+
   );
 }
