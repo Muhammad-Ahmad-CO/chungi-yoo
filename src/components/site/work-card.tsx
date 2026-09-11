@@ -5,44 +5,52 @@ export type Work = {
   title: string;
   description: string;
   image: string;
+  image2: string;
+  arch: string;
   bg: string;
-  tilt: number;
 };
 
-export function WorkCard({ work, flip }: { work: Work; flip: boolean }) {
+export function WorkCard({ work }: { work: Work }) {
   const reveal = useReveal<HTMLElement>();
 
   return (
     <section
       ref={reveal.ref}
-      className={`${reveal.className} relative overflow-hidden px-5 py-24 md:px-16 md:py-36`}
+      className={`${reveal.className} relative overflow-hidden px-5 pt-28 pb-20 md:px-16 md:pt-40 md:pb-28`}
       style={{ backgroundColor: work.bg }}
     >
+      {/* big arch shape behind the cards */}
       <div
-        className={`mx-auto flex max-w-6xl flex-col items-center gap-12 md:gap-20 ${
-          flip ? "md:flex-row-reverse" : "md:flex-row"
-        }`}
-      >
-        <div className="relative w-full max-w-sm shrink-0">
-          <div className="absolute inset-x-6 top-10 bottom-0 rounded-[999px] bg-cream/40 blur-2xl" />
+        className="pointer-events-none absolute left-1/2 top-24 h-[34rem] w-[52rem] max-w-[130vw] -translate-x-1/2 rounded-t-full md:top-28 md:h-[42rem]"
+        style={{ backgroundColor: work.arch }}
+      />
+
+      <div className="relative mx-auto max-w-5xl">
+        <div className="relative mx-auto flex h-[19rem] max-w-xl items-center justify-center md:h-[26rem]">
+          <img
+            src={work.image2}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            className="absolute right-4 w-40 rotate-[7deg] rounded-2xl object-cover shadow-[0_24px_50px_-22px_rgba(0,0,0,0.55)] md:right-10 md:w-60"
+          />
           <img
             src={work.image}
             alt={`${work.title} project artwork`}
             loading="lazy"
-            width={900}
-            height={1200}
-            style={{ ["--tilt" as string]: `${work.tilt}deg` }}
-            className="relative w-full animate-float object-cover shadow-[0_30px_60px_-25px_rgba(0,0,0,0.45)]"
+            className="absolute left-4 w-40 -rotate-[8deg] rounded-2xl object-cover shadow-[0_28px_60px_-20px_rgba(0,0,0,0.5)] md:left-10 md:w-60"
           />
         </div>
 
-        <div className="max-w-md text-center md:text-left">
-          <p className="eyebrow text-ink/50">{work.index}</p>
-          <h2 className="mt-4 text-5xl md:text-7xl">{work.title}</h2>
-          <p className="mt-6 text-base leading-relaxed text-ink/70">{work.description}</p>
+        <p className="mt-6 text-center eyebrow text-ink/50">{work.index}</p>
+        <h2 className="mt-3 text-center text-6xl leading-[0.9] md:text-[7rem]">{work.title}</h2>
+        <p className="mx-auto mt-7 max-w-md text-center text-base leading-relaxed text-ink/70">
+          {work.description}
+        </p>
+        <div className="mt-8 text-center">
           <a
             href="#contact"
-            className="mt-8 inline-block border-b border-ink pb-1 eyebrow transition-opacity hover:opacity-60"
+            className="inline-block rounded-full border border-ink/40 px-7 py-3 eyebrow transition-colors hover:bg-ink hover:text-cream"
           >
             View project
           </a>
