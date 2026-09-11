@@ -91,14 +91,14 @@ const WORKS: Work[] = [
 function Hero() {
   const y = useScrollY();
   return (
-    <section id="top" className="relative min-h-screen overflow-hidden px-5 pt-36 md:px-12 md:pt-44">
-      {/* soft pink shapes */}
+    <section id="top" className="relative overflow-hidden px-5 pt-36 pb-16 md:px-12 md:pt-44 md:pb-24">
+      {/* soft shapes */}
       <div
-        className="pointer-events-none absolute left-6 top-[46%] h-40 w-40 rotate-45 bg-blush/70 md:h-64 md:w-64"
+        className="pointer-events-none absolute left-2 top-[30%] h-32 w-32 rotate-45 bg-blush/70 md:h-56 md:w-56"
         style={{ transform: `translateY(${y * -0.12}px) rotate(45deg)` }}
       />
       <div
-        className="pointer-events-none absolute -right-16 top-[30%] h-72 w-72 rounded-full bg-sun/50 blur-[2px] md:h-[28rem] md:w-[28rem]"
+        className="pointer-events-none absolute -right-20 top-[18%] h-64 w-64 rounded-full bg-sun/45 blur-[2px] md:h-[26rem] md:w-[26rem]"
         style={{ transform: `translateY(${y * -0.18}px)` }}
       />
 
@@ -112,16 +112,15 @@ function Hero() {
           <span className="block italic">yoo</span>
         </h1>
 
-        {/* intro copy inside an oval outline */}
-        <div className="pointer-events-none absolute inset-x-0 top-[42%] flex justify-center">
-          <p className="max-w-[19rem] rounded-[50%] border border-ink/40 bg-cream/70 px-10 py-8 text-center text-[0.8rem] leading-relaxed text-ink/80 backdrop-blur-[1px]">
+        <div className="relative mt-12 flex items-center justify-center gap-6 md:mt-16 md:gap-16">
+          <p className="max-w-[19rem] rounded-[50%] border border-ink/40 bg-cream px-10 py-9 text-center text-[0.8rem] leading-relaxed text-ink/80">
             Hi! I&rsquo;m Chung-Yun Yoo, Art director and Illustrator from Germany. But you can call me Chungi.
           </p>
+          <RotatingBadge className="hidden md:block" />
         </div>
-
-        <RotatingBadge className="absolute right-2 top-[26%] md:right-10" />
       </div>
     </section>
+
   );
 }
 
